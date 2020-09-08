@@ -20,21 +20,23 @@ if docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'; then
 	name=`docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'`
 	docker stop $name
 	docker rm $name
-	echo "删除容器完毕！\n\n"
+	echo "删除容器完毕！"
 fi
 # -w 或 --word-regexp : 只显示全字符合的列。
 
 # 强制删除滚动更新残留的镜像
 echo "强制删除滚动更新残留的镜像"
 if docker images | grep -w $CONTAINER | awk '{print $3}'; then
+	docker images
 	name=`docker images | grep -w $CONTAINER | awk '{print $3}'`
+	echo $name
 	docker stop $name
 	docker rmi -f $name
-	echo "强制删除镜像完毕!\n\n"
+	echo "强制删除镜像完毕!"
 fi
 echo "s%IMAGE_LATEST%$IMAGE%g"
 # 创建新镜像
-echo "docker building\n\n\n\n"
+echo "docker building"
 docker build -t $IMAGE . && \
 # --tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。
 
