@@ -9,4 +9,30 @@ pipeline {
       }
     }
   }
+  post {
+  always {
+    echo 'always!'
+  }
+
+  changed {
+    echo 'changed!'
+  }
+
+  success {
+    echo 'success!'
+  }
+
+  failure {
+    echo 'failure!'
+  }
+
+  aborted {
+    echo 'aborted!'
+  }
+
+  unstable {
+    echo 'unstable!'
+  }
+
+}
 }
