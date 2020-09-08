@@ -27,10 +27,7 @@ fi
 # 强制删除滚动更新残留的镜像
 echo "强制删除滚动更新残留的镜像"
 if docker images | grep -w $CONTAINER | awk '{print $3}'; then
-	docker images
 	name=`docker images | grep -w $CONTAINER | awk '{print $3}'`
-	echo $name
-	docker stop $name
 	docker rmi -f $name
 	echo "强制删除镜像完毕!"
 fi
