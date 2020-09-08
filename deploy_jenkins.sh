@@ -15,10 +15,13 @@ IMAGE=$CONTAINER":"$(date -d "today" +"%Y%m%d_%H%M%S")
 
 # 删除滚动更新残留的容器
 docker rm `docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'`
+# -w 或 --word-regexp : 只显示全字符合的列。
+
 # 强制删除滚动更新残留的镜像
 docker rmi --force `docker images | grep -w $CONTAINER | awk '{print $3}'`
 
 # 创建新镜像
+echo "docker building"
 docker build -t $IMAGE . && \
 
 # 删除 docker-compose.jenkins.yml 文件，防止使用相同镜像
