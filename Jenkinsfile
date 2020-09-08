@@ -1,5 +1,8 @@
 pipeline {
   agent none
+  triggers {
+    pollSCM('H/2 * * * *')
+  }
   stages {
     stage('Deploy') {
       agent any
@@ -10,29 +13,29 @@ pipeline {
     }
   }
   post {
-  always {
-    echo 'always!'
-  }
+    always {
+      echo 'always!'
+    }
 
-  changed {
-    echo 'changed!'
-  }
+    changed {
+      echo 'changed!'
+    }
 
-  success {
-    echo 'success!'
-  }
+    success {
+      echo 'success!'
+    }
 
-  failure {
-    echo 'failure!'
-  }
+    failure {
+      echo 'failure!'
+    }
 
-  aborted {
-    echo 'aborted!'
-  }
+    aborted {
+      echo 'aborted!'
+    }
 
-  unstable {
-    echo 'unstable!'
-  }
+    unstable {
+      echo 'unstable!'
+    }
 
-}
+  }
 }

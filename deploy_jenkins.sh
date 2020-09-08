@@ -11,7 +11,8 @@
 # 容器名称
 CONTAINER="jenkins_demo"
 # 镜像名称（以日期时间为镜像标签，防止重复）
-IMAGE=$CONTAINER":"$(date -d "today" +"%Y%m%d_%H%M%S")
+IMAGE=$CONTAINER":"$(date "+%Y%m%d_%H%M%S")
+# -d datestr : 显示 datestr 中所设定的时间 (非系统时间)
 
 # 删除滚动更新残留的容器
 docker rm `docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'`
