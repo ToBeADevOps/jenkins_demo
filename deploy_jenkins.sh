@@ -15,7 +15,7 @@ IMAGE=$CONTAINER":"$(date "+%Y%m%d_%H%M%S")
 # -d datestr : 显示 datestr 中所设定的时间 (非系统时间)
 
 # 删除滚动更新残留的容器
-echo "删除滚动更新残留的容器"
+echo -e "\n删除滚动更新残留的容器"
 if docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'; then
 	name=`docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'`
 	docker stop $name
@@ -25,15 +25,15 @@ fi
 # -w 或 --word-regexp : 只显示全字符合的列。
 
 # 强制删除滚动更新残留的镜像
-echo "强制删除滚动更新残留的镜像"
+echo -e "\n强制删除滚动更新残留的镜像"
 if docker images | grep -w $CONTAINER | awk '{print $3}'; then
 	name=`docker images | grep -w $CONTAINER | awk '{print $3}'`
 	docker rmi -f $name
 	echo "强制删除镜像完毕!"
 fi
-echo "s%IMAGE_LATEST%$IMAGE%g"
+
 # 创建新镜像
-echo "docker building"
+echo -e "\ndocker building"
 docker build -t $IMAGE . && \
 # --tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。
 
