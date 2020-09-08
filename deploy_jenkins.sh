@@ -33,6 +33,7 @@ fi
 echo "docker building"
 docker build -t $IMAGE . && \
 # --tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。
+
 # 删除 docker-compose.jenkins.yml 文件，防止使用相同镜像
 rm -rf docker-compose.jenkins.yml && \
 
