@@ -16,7 +16,7 @@ IMAGE=$CONTAINER":"$(date "+%Y%m%d_%H%M%S")
 
 # 删除滚动更新残留的容器
 if docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'; then
-	name = docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'
+	name=`docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'`
 	docker stop $name
 	docker rm $name
 fi
@@ -24,7 +24,7 @@ fi
 
 # 强制删除滚动更新残留的镜像
 if docker images | grep -w $CONTAINER | awk '{print $3}'; then
-	name = docker images | grep -w $CONTAINER | awk '{print $3}'
+	name=`docker images | grep -w $CONTAINER | awk '{print $3}'`
 	docker stop $name
 	docker rmi -f $name
 fi
@@ -32,7 +32,7 @@ fi
 # 创建新镜像
 echo "docker building"
 docker build -t $IMAGE . && \
-
+# --tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。
 # 删除 docker-compose.jenkins.yml 文件，防止使用相同镜像
 rm -rf docker-compose.jenkins.yml && \
 
