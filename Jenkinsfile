@@ -1,5 +1,10 @@
 pipeline {
-  agent none
+  agent {
+    node {
+      lable 'master' 
+      customWorkspace 'C:/Users/hell/Desktop/Jenkins'
+    }
+  }
   triggers {
     pollSCM('H/2 * * * *')
   }
