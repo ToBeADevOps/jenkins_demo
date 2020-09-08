@@ -15,11 +15,19 @@ IMAGE=$CONTAINER":"$(date "+%Y%m%d_%H%M%S")
 # -d datestr : 显示 datestr 中所设定的时间 (非系统时间)
 
 # 删除滚动更新残留的容器
-docker rm `docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'`
+if docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}' then
+	name = docker ps -a | grep -w $CONTAINER"_"$CONTAINER | awk '{print $1}'
+	docker stop $name
+	docker rm $name
+fi
 # -w 或 --word-regexp : 只显示全字符合的列。
 
 # 强制删除滚动更新残留的镜像
-docker rmi --force `docker images | grep -w $CONTAINER | awk '{print $3}'`
+if docker images | grep -w $CONTAINER | awk '{print $3}' then
+	name = docker images | grep -w $CONTAINER | awk '{print $3}'
+	docker stop $name
+	docker rmi -f $name
+fi
 
 # 创建新镜像
 echo "docker building"
