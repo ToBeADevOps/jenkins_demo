@@ -2,7 +2,7 @@ pipeline {
   agent {
     node {
       label 'master' 
-      customWorkspace 'C:/Users/hell/Desktop/Jenkins'
+      customWorkspace 'C:/Users/hell/Desktop/Jenkins/jenkins_demo'
     }
   }
   triggers {
