@@ -32,7 +32,7 @@ if docker images | grep -w $CONTAINER | awk '{print $3}'; then
 	docker rmi -f $name
 	echo "强制删除镜像完毕!\n\n"
 fi
-
+echo "s%IMAGE_LATEST%$IMAGE%g"
 # 创建新镜像
 echo "docker building\n\n\n\n"
 docker build -t $IMAGE . && \
