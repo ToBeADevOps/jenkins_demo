@@ -46,7 +46,7 @@ rm -rf docker-compose.jenkins.yml && \
 cp docker-compose.src.yml docker-compose.jenkins.yml && \
 
 # 替换镜像名标志位为最新镜像
-sed -i s%IMAGE_LATEST$%IMAGE%g docker-compose.jenkins.yml && \
+sed -i s%IMAGE_LATEST%$IMAGE%g docker-compose.jenkins.yml && \
 
 # 使用 docker stack 启动服务
 docker stack deploy -c docker-compose.jenkins.yml $CONTAINER
