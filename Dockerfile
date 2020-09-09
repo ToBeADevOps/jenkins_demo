@@ -18,7 +18,7 @@ COPY ./index.html /usr/share/nginx/html/index.html
 	# COPY [--chown=<user>:<group>] <源路径1>...  <目标路径>
 	# COPY [--chown=<user>:<group>] ["<源路径1>",...  "<目标路径>"]
 
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && \ 
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 	ln -sf /dev/stderr /var/log/nginx/error.log		#-f 强行删除任何已存在的目标文件
 
 
