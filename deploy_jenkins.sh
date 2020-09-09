@@ -10,6 +10,8 @@
 
 # 容器名称
 CONTAINER="jenkins_demo"
+#!/bin/bash
+
 # 镜像名称（以日期时间为镜像标签，防止重复）
 IMAGE=$CONTAINER":"$(date "+%Y%m%d_%H%M%S")
 # -d datestr : 显示 datestr 中所设定的时间 (非系统时间)
@@ -44,7 +46,7 @@ rm -rf docker-compose.jenkins.yml && \
 cp docker-compose.src.yml docker-compose.jenkins.yml && \
 
 # 替换镜像名标志位为最新镜像
-sed -i s/IMAGE_LATEST/$IMAGE/ docker-compose.jenkins.yml && \
+sed -i s/IMAGE_LATEST$/IMAGE/ docker-compose.jenkins.yml && \
 
 # 使用 docker stack 启动服务
 docker stack deploy -c docker-compose.jenkins.yml $CONTAINER
