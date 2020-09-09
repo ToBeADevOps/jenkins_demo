@@ -13,7 +13,7 @@ pipeline {
       agent any
       steps {
         echo 'Deploying'
-        sh 'sed -i "s/\r$//" deploy_jenkins.sh && source deploy_jenkins.sh'
+        sh 'sh deploy_jenkins.sh'
       }
     }
   }
