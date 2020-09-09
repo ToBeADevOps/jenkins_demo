@@ -36,17 +36,17 @@ fi
 
 # 创建新镜像
 echo -e "\ndocker building"
-docker build -t $IMAGE . && \
+# docker build -t $IMAGE . && \
 # --tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。
 
 # 删除 docker-compose.jenkins.yml 文件，防止使用相同镜像
-rm -rf docker-compose.jenkins.yml && \
+# rm -rf docker-compose.jenkins.yml && \
 
 # 复制 docker-compose.src.yml 文件，防止污染原文件
-cp docker-compose.src.yml docker-compose.jenkins.yml && \
+# cp docker-compose.src.yml docker-compose.jenkins.yml && \
 
 # 替换镜像名标志位为最新镜像
-sed -i s/IMAGE_LATEST/$IMAGE/g docker-compose.jenkins.yml && \
+# sed -i s/IMAGE_LATEST/$IMAGE/g docker-compose.jenkins.yml && \
 
 # 使用 docker stack 启动服务
-docker stack deploy -c docker-compose.jenkins.yml $CONTAINER
+# docker stack deploy -c docker-compose.jenkins.yml $CONTAINER

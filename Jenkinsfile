@@ -5,9 +5,6 @@ pipeline {
       customWorkspace 'C:/Users/hell/Desktop/Jenkins/jenkins_demo'
     }
   }
-  triggers {
-    pollSCM('H/2 * * * *')
-  }
   stages {
     stage('Deploy') {
       agent any
